@@ -56,10 +56,14 @@ public class UsuarioController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/usuarios/{id}")
-    public String borrarUsuario(@PathVariable Integer id ){
-        UsuarioService accionesUser = null;
-        return accionesUser.borrarUsuario(id);
+    @DeleteMapping("/borrarUsuariosDto/{id}")
+    public ResponseEntity<String> borrarUsuario(@PathVariable Integer id){
+        boolean borrado = usuarioService.borrarUsuario(id);
+        if (borrado) {
+            return ResponseEntity.ok("Usuario borrado correctamente.");
+        } else {
+        return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/usuarioDto/{correo}")
@@ -67,10 +71,11 @@ public class UsuarioController {
         return usuarioService.obtenerUserDto(correo);
     }
     
-    @GetMapping("/obtenerUsuario/{id}")
-    public ResponseEntity<UsuarioDto> obtenerUsuarioDto(@PathVariable Integer idUsuario) {
-        if(usuarioService.obtenerUsuarioDto(idUsuario)!=null){
-            return ResponseEntity.ok(usuarioService.obtenerUsuarioDto(idUsuario));
+    @GetMapping("/obtenerUsuarioDto/{id}")
+    public ResponseEntity<UsuarioDto> obtenerUsuarioDto(@PathVariable("id") Integer idUsuario) {
+        UsuarioDto dto = usuarioService.obtenerUsuarioDto(idUsuario);
+        if (dto != null) {
+            return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();
     }

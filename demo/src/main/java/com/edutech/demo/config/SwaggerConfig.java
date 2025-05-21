@@ -11,7 +11,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI openAPI(){
         return new OpenAPI().info(new Info()
-        .title("Proyecto de usuarios")
+        .title("Proyecto Edutech de usuarios")
         .version("1.0")
         .description("Microservicio de Usuarios")
         );

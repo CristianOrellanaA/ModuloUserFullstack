@@ -74,15 +74,13 @@ public Usuario obtenerUsuario(String correo){
         return null;
     }
 }
-    public String borrarUsuario (Integer id ){
-        for (Usuario user : usuarios){
-            if(user.getIdUsuario()== id ){
-                usuarios.remove(user);
-                return "usuario borrado correctamente ";
-            }
-        }
-        return null;
+    public boolean borrarUsuario(Integer id) {
+    if (usuarioRepository.existsById(id)) {
+        usuarioRepository.deleteById(id);
+        return true;
     }
+    return false;
+}
 
 
 public UsuarioDto obtenerUsuarioDto(Integer idUsuario){
@@ -90,6 +88,8 @@ public UsuarioDto obtenerUsuarioDto(Integer idUsuario){
         UsuarioEntity usuario = usuarioRepository.findByIdUsuario(idUsuario);
         UsuarioDto nuevoUsuario = new UsuarioDto(
             usuario.getNombre(),
+            usuario.getAppaterno(),
+            usuario.getApmaterno(),
             usuario.getCorreo()
         );
         return nuevoUsuario;
@@ -104,6 +104,8 @@ public ResponseEntity<UsuarioDto> obtenerUserDto(@PathVariable String correo){
         UsuarioEntity nuevoUsuario = usuarioRepository.findByCorreo(correo);
         UsuarioDto usuarioResponse = new UsuarioDto(
             nuevoUsuario.getNombre(),
+            nuevoUsuario.getAppaterno(),
+            nuevoUsuario.getApmaterno(),
             nuevoUsuario.getCorreo()
         );
         return ResponseEntity.ok(usuarioResponse);
