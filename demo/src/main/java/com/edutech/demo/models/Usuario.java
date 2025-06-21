@@ -1,7 +1,7 @@
 package com.edutech.demo.models;
 
 public class Usuario {
-    private Integer idUsuario;
+    private int idUsuario;
     private String passwordUsuario;
     private String rut;
     private String nombre;
@@ -9,9 +9,12 @@ public class Usuario {
     private String apmaterno;
     private String fechaNacimiento;
     private String correo;
-    
-    public Usuario(Integer idUsuario, String passwordUsuario, String rut, String nombre, String appaterno,
-            String apmaterno, String fechaNacimiento, String correo) {
+
+    public Usuario() {
+    }
+
+    public Usuario(int idUsuario, String passwordUsuario, String rut, String nombre,
+                   String appaterno, String apmaterno, String fechaNacimiento, String correo) {
         this.idUsuario = idUsuario;
         this.passwordUsuario = passwordUsuario;
         this.rut = rut;
@@ -22,11 +25,11 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public Integer getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -88,11 +91,9 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [idUsuario=" + idUsuario + ", passwordUsuario=" + passwordUsuario + ", rut=" + rut + ", nombre="
-                + nombre + ", appaterno=" + appaterno + ", apmaterno=" + apmaterno + ", fechaNacimiento="
-                + fechaNacimiento + ", correo=" + correo + "]";
+        return "Usuario [idUsuario=" + idUsuario + ", passwordUsuario=" + passwordUsuario +
+                ", rut=" + rut + ", nombre=" + nombre + ", appaterno=" + appaterno +
+                ", apmaterno=" + apmaterno + ", fechaNacimiento=" + fechaNacimiento +
+                ", correo=" + correo + "]";
     }
-
-    
-
 }
